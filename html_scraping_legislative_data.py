@@ -27,13 +27,6 @@ d2 = soup.findAll("span", {"class": "ligacoes"}) #districts 2
 
 # sobreposição de Beja, Braga, Bragança e Coimbra
 
-#for i in list2:
-	#url = 'https://www.eleicoes.mai.gov.pt/legislativas2005/{}_ftp.html#'.format(i)
-	#r = requests.get(url)
-	#soup = BeautifulSoup(r.content, "html.parser")
-	#print(soup.span)
-
-
 def get_page(district):
 	d = list(filter(lambda x:x != '\n', BeautifulSoup(requests.get(f'https://www.eleicoes.mai.gov.pt/legislativas2005/{district}_ftp.html#viana').text, 'html.parser').table.contents))[7:-2]
 	new_d, last, c = [[i.find('td', {'class':'ligacoes'}), [[k.text for k in b.find_all('td')] for b in i.find_all('tr', {'valign':'bottom'})]] for i in d], None, []
